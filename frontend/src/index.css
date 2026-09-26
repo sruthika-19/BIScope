@@ -1,0 +1,42 @@
+html {
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  font-family: Inter, 'Segoe UI', sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+img,
+svg {
+  display: block;
+}
+
+input,
+button,
+textarea {
+  font: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+p,
+li,
+small,
+span {
+  color: inherit;
+}
+
+strong {
+  font-weight: 700;
+}
+

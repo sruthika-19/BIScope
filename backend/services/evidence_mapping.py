@@ -25,12 +25,22 @@ def extract_evidence_keywords(required_evidence: str) -> List[str]:
     keywords = [w for w in words if len(w) > 2 and w not in stop_words]
     return keywords
 
-def compare_evidence(required_evidence: str, submitted_evidence: Optional[str]) -> Dict[str, Any]:
+def compare_evidence(
+    required_evidence: str,
+    submitted_evidence: Optional[str],
+    context_fields: Optional[List[str]] = None,
+) -> Dict[str, Any]:
     """
     Compares the required evidence against submitted document text.
     Strictly identifies presence of keywords; does NOT verify authenticity or compliance.
     """
     req_keywords = extract_evidence_keywords(required_evidence)
+    context_keywords = []
+    for field in context_fields or []:
+        for keyword in extract_evidence_keywords(field):
+            if keyword not in req_keywords and keyword not in context_keywords:
+                context_keywords.append(keyword)
+    all_keywords = req_keywords + context_keywords
     
     if not submitted_evidence or not submitted_evidence.strip():
         return {
@@ -38,17 +48,17 @@ def compare_evidence(required_evidence: str, submitted_evidence: Optional[str]) 
             "evidence_status": "Not found",
             "message": "No evidence submitted. Upload required.",
             "matched_terms": [],
-            "missing_terms": req_keywords
+            "missing_terms": all_keywords
         }
     
     norm_submitted = normalize_text(submitted_evidence)
     matched = []
     missing = []
     
-    for kw in req_keywords:
+    for kw in all_keywords:
         if kw in norm_submitted:
             matched.append(kw)
-        else:
+        elif kw in req_keywords:
             missing.append(kw)
             
     if not req_keywords:
@@ -60,7 +70,8 @@ def compare_evidence(required_evidence: str, submitted_evidence: Optional[str]) 
             "missing_terms": []
         }
 
-    ratio = len(matched) / len(req_keywords)
+    matched_required = sum(keyword in matched for keyword in req_keywords)
+    ratio = matched_required / len(req_keywords)
     
     # Exact phrase match or all keywords found
     if ratio == 1.0 or normalize_text(required_evidence) in norm_submitted:
@@ -71,7 +82,7 @@ def compare_evidence(required_evidence: str, submitted_evidence: Optional[str]) 
             "matched_terms": matched,
             "missing_terms": missing
         }
-    elif ratio > 0:
+    elif ratio > 0 or matched:
         return {
             "status": "Partially matched",
             "evidence_status": "Needs review",
@@ -98,8 +109,14 @@ def map_document_to_requirements(requirements: List[Dict[str, Any]], submitted_d
         req_desc = req.get("requirement_description", "")
         req_evid = req.get("required_evidence", "")
         evid_type = req.get("evidence_type", "")
-        
-        comp = compare_evidence(req_evid, submitted_document_text)
+        context_fields = [
+            evid_type,
+            req_desc,
+            req.get("clause_reference", ""),
+            req.get("limit_or_condition", ""),
+            req.get("comparison_type", ""),
+        ]
+        comp = compare_evidence(req_evid, submitted_document_text, context_fields)
         
         results.append({
             "requirement_id": req_id,

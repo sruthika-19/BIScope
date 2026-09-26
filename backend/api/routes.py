@@ -15,7 +15,6 @@ from services.terminology import analyze_query
 from services.ai_chat import chat_with_ai
 from services.standard_search import search_database, get_standard_details, build_standard_explanation, build_alternative_explanation
 from services.evidence_mapping import map_document_to_requirements
-from data.detailed_requirements import DETAILED_REQUIREMENTS
 from api.schemas import EvidenceAnalysisResponse
 
 UPLOAD_DIR = Path(__file__).resolve().parent.parent / "uploads"
@@ -104,14 +103,16 @@ def get_detailed_requirements_endpoint(product_id: str):
     response_model=EvidenceAnalysisResponse
 )
 def analyze_evidence(product_id: str, document_text: str):
-    if product_id.upper() != DETAILED_REQUIREMENTS["product_id"].upper():
+    product_id = product_id.strip().upper()
+    detailed_data = get_detailed_requirements(product_id)
+    if not detailed_data:
         raise HTTPException(
             status_code=404,
-            detail="Evidence mapping is currently available for P001 only"
+            detail=f"Detailed requirements not found for product {product_id}"
         )
 
     results = map_document_to_requirements(
-        DETAILED_REQUIREMENTS["requirements"],
+        detailed_data["requirements"],
         document_text
     )
 

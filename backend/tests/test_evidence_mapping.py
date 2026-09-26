@@ -1,7 +1,11 @@
 from services.evidence_mapping import map_document_to_requirements
 from data.detailed_requirements import DETAILED_REQUIREMENTS
 
-p001_reqs = DETAILED_REQUIREMENTS["requirements"]
+p001_reqs = [
+    requirement
+    for requirement in DETAILED_REQUIREMENTS
+    if requirement["product_id"] == "P001"
+]
 
 def print_results(title, results):
     print("\n" + "=" * 70)

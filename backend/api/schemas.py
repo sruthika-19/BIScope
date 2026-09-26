@@ -133,7 +133,7 @@ class DetailedRequirementsResponse(BaseModel):
     product_id: str
     product_name: str
     title: str
-    edition_year: int
+    edition_year: Optional[int] = None
     requirements_status: str
     requirements: List[DetailedRequirementItem]
 
@@ -158,4 +158,3 @@ class EvidenceUploadResponse(BaseModel):
     filename: str
     extracted_text_length: int
     results: List[EvidenceRequirementResult]
-
