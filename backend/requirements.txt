@@ -5,5 +5,7 @@ httpx
 groq
 python-dotenv
 pymupdf
+pypdf
 pytesseract
 Pillow
+python-multipart
