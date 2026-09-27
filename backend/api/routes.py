@@ -131,8 +131,10 @@ def upload_evidence_endpoint(
     if ext not in [".pdf", ".txt"]:
         raise HTTPException(status_code=400, detail="Only PDF and TXT files are supported.")
 
-    # 2. Save File Temporarily
-    file_path = UPLOAD_DIR / file.filename
+    # 2. Save File Temporarily using a server-controlled filename
+    safe_filename = Path(file.filename or "uploaded_file").name
+    file_path = UPLOAD_DIR / safe_filename
+
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
