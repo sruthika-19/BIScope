@@ -12,6 +12,12 @@ def search_standards(product_id: str, attributes: dict) -> Dict[str, Any]:
     """
     if not DB_PATH.exists():
         # Trigger auto-initialization instead of failing
+        import sys
+
+        project_root = Path(__file__).resolve().parents[2]
+        if str(project_root) not in sys.path:
+            sys.path.insert(0, str(project_root))
+
         from scripts.import_data import initialize_database
         initialize_database()
 
