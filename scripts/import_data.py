@@ -12,13 +12,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def initialize_database():
-    """Creates the database schema and imports data from existing local sources."""
+    """Creates the database schema and imports authoritative data directly from JSON."""
     os.makedirs(DB_DIR, exist_ok=True)
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
-    # 1. Create the THREE required tables safely
+    # 1. Create the THREE required tables safely (Existing Schema Preserved)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS products (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,16 +43,25 @@ def initialize_database():
         )
     ''')
 
-    # 2. Extract authoritative data to prevent duplication
     json_path = os.path.join(BASE_DIR, 'backend', 'data', 'detailed_requirements.json')
 
     try:
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
-        # 3. Insert records idempotently (IGNORE duplicates on re-runs)
+        products_imported = 0
+        standards_imported = 0
+
+        # 2. Extract authoritative data with explicit validation
         for product_code, details in data.items():
-            product_name = product_code.replace('_', ' ').title()
+            try:
+                # STRICT MAPPING: Fail explicitly if required fields are missing
+                product_name = details["product_name"]
+                std_num = details["standard_number"]
+                year = str(details["edition_year"])
+            except KeyError as e:
+                logger.error(f"Validation failed: Missing required field {e} for {product_code}. Skipping record.")
+                continue
 
             # Insert Product
             cursor.execute('''
@@ -60,7 +69,7 @@ def initialize_database():
                 VALUES (?, ?)
             ''', (product_code, product_name))
 
-            # Retrieve the product ID
+            # Retrieve the product ID for mapping
             cursor.execute('SELECT id FROM products WHERE product_code = ?', (product_code,))
             p_row = cursor.fetchone()
             if not p_row:
@@ -68,17 +77,12 @@ def initialize_database():
             p_id = p_row[0]
 
             # Insert Standard
-            standard_info = details.get("standard", "")
-            parts = standard_info.split(":")
-            std_num = parts[0].strip() if len(parts) > 0 else standard_info
-            year = parts[1].strip() if len(parts) > 1 else ""
-
             cursor.execute('''
                 INSERT OR IGNORE INTO standards (standard_number, year)
                 VALUES (?, ?)
             ''', (std_num, year))
 
-            # Retrieve the standard ID
+            # Retrieve the standard ID for mapping
             cursor.execute('SELECT id FROM standards WHERE standard_number = ?', (std_num,))
             s_row = cursor.fetchone()
             if not s_row:
@@ -91,8 +95,11 @@ def initialize_database():
                 VALUES (?, ?)
             ''', (p_id, s_id))
 
+            products_imported += 1
+            standards_imported += 1
+
         conn.commit()
-        logger.info("Successfully initialized biscope.db with products, standards, and mappings.")
+        logger.info(f"Successfully initialized biscope.db. Imported {products_imported} products and {standards_imported} standards.")
 
     except FileNotFoundError:
         logger.error(f"Source data file not found at {json_path}. Cannot populate DB.")
