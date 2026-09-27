@@ -63,7 +63,7 @@ export type StandardExplanation = {
 export type StandardAlternative = {
   standard_id: number
   standard_number: string
-  title: string
+  title?: string | null
   relationship: string
   matches: string[]
   mismatches: string[]

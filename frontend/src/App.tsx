@@ -1155,7 +1155,10 @@ function ExplorePage({
               <ul>
                 {journey.alternatives.slice(0, 3).map((alternative) => (
                   <li key={alternative.standard_id}>
-                    <strong>{alternative.standard_number} — {alternative.title}</strong>
+                    <strong>
+                      {alternative.standard_number}
+                      {alternative.title ? ` — ${alternative.title}` : ''}
+                    </strong>
                     <p>{alternative.explanation}</p>
                   </li>
                 ))}
@@ -2049,7 +2052,7 @@ function AssistantDock({
         return { content: 'No alternative candidate standards are currently available in the BIScope data.' }
       }
       return {
-        content: `Other candidate standards in BIScope:\n${alternatives.slice(0, 3).map((item) => `${item.standard_number} — ${item.title}: ${item.explanation}`).join('\n')}`,
+        content: `Other candidate standards in BIScope:\n${alternatives.slice(0, 3).map((item) => `${item.standard_number}${item.title ? ` — ${item.title}` : ''}: ${item.explanation}`).join('\n')}`,
         actions: [{ label: 'View Standard options', route: '/explore' }],
       }
     }

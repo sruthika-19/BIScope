@@ -8,7 +8,7 @@ DB_PATH = Path(__file__).resolve().parent.parent / "database" / "biscope.db"
 def search_database(query: str) -> List[Dict[str, Any]]:
     """
     Searches the SQLite database for products and their candidate standards.
-    Matches against product ID, name, search terms, and normalized terms.
+    Matches the product code and name stored by the database importer.
     """
     if not DB_PATH.exists() or not query.strip():
         return []
@@ -25,27 +25,25 @@ def search_database(query: str) -> List[Dict[str, Any]]:
         sql = """
             SELECT 
                 p.product_code as product_id,
-                p.name as product_name,
-                p.normalized_term,
+                p.product_name,
+                NULL as normalized_term,
                 s.id as standard_id,
                 s.standard_number,
-                s.title,
-                s.edition_year,
-                s.status,
-                s.qco_info
+                NULL as title,
+                s.year as edition_year,
+                NULL as status,
+                NULL as qco_info
             FROM products p
             JOIN product_standards ps ON p.id = ps.product_id
             JOIN standards s ON ps.standard_id = s.id
             WHERE p.product_code IS NOT NULL
               AND (
-                  p.name LIKE ? OR 
-                  p.search_terms LIKE ? OR 
-                  p.normalized_term LIKE ? OR 
+                  p.product_name LIKE ? OR
                   p.product_code LIKE ?
               )
         """
         
-        cursor.execute(sql, (search_pattern, search_pattern, search_pattern, search_pattern))
+        cursor.execute(sql, (search_pattern, search_pattern))
         rows = cursor.fetchall()
         
         results = [dict(row) for row in rows]
@@ -70,7 +68,24 @@ def get_standard_details(standard_id: int) -> Optional[Dict[str, Any]]:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM standards WHERE id = ?", (standard_id,))
+        cursor.execute(
+            """
+            SELECT
+                id,
+                standard_number,
+                NULL as title,
+                NULL as scope,
+                year as edition_year,
+                NULL as revision,
+                NULL as newer_edition,
+                NULL as source,
+                NULL as status,
+                NULL as qco_info
+            FROM standards
+            WHERE id = ?
+            """,
+            (standard_id,)
+        )
         row = cursor.fetchone()
         
         conn.close()
@@ -131,7 +146,7 @@ def build_standard_explanation(product_id: str, standard_id: int) -> Optional[Di
                 "unknown": [
                     "Technical applicability requires verification against the official BIS standard."
                 ],
-                "explanation": f"{standard['standard_number']} is listed as a candidate standard for {product['name']} in the current BIScope dataset. Technical applicability and compliance still require verification."
+                "explanation": f"{standard['standard_number']} is listed as a candidate standard for {product['product_name']} in the current BIScope dataset. Technical applicability and compliance still require verification."
             }
         else:
             return {
@@ -146,7 +161,7 @@ def build_standard_explanation(product_id: str, standard_id: int) -> Optional[Di
                 "unknown": [
                     "Technical applicability requires verification against the official BIS standard."
                 ],
-                "explanation": f"{standard['standard_number']} is not currently linked as a candidate standard for {product['name']} in the database."
+                "explanation": f"{standard['standard_number']} is not currently linked as a candidate standard for {product['product_name']} in the database."
             }
 
     except sqlite3.Error as e:
@@ -166,7 +181,10 @@ def build_alternative_explanation(product_id: str, selected_standard_id: int) ->
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
-        cursor.execute("SELECT id, name FROM products WHERE product_code = ?", (product_id,))
+        cursor.execute(
+            "SELECT id, product_name FROM products WHERE product_code = ?",
+            (product_id,)
+        )
         product = cursor.fetchone()
         if not product:
             conn.close()
@@ -174,7 +192,7 @@ def build_alternative_explanation(product_id: str, selected_standard_id: int) ->
 
         # Find alternatives linked to the same product but excluding the selected standard
         query = """
-            SELECT s.id, s.standard_number, s.title
+            SELECT s.id, s.standard_number, NULL as title
             FROM standards s
             JOIN product_standards ps ON s.id = ps.standard_id
             WHERE ps.product_id = ? AND s.id != ?
@@ -191,13 +209,13 @@ def build_alternative_explanation(product_id: str, selected_standard_id: int) ->
                 "title": r["title"],
                 "relationship": "alternative_candidate",
                 "matches": [
-                    f"Standard {r['standard_number']} is also linked to {product['name']} in the database."
+                    f"Standard {r['standard_number']} is also linked to {product['product_name']} in the database."
                 ],
                 "mismatches": [],
                 "unknown": [
                     "Technical differences and specific applicability between this alternative and the selected standard require manual verification."
                 ],
-                "explanation": f"{r['standard_number']} is an alternative candidate standard for {product['name']}. Applicability is currently 'To be verified'."
+                "explanation": f"{r['standard_number']} is an alternative candidate standard for {product['product_name']}. Applicability is currently 'To be verified'."
             })
 
         return {

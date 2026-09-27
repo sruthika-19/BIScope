@@ -84,7 +84,7 @@ class ExplanationResponse(BaseModel):
 class AlternativeItem(BaseModel):
     standard_id: int
     standard_number: str
-    title: str
+    title: Optional[str] = None
     relationship: str
     matches: List[str]
     mismatches: List[str]
