@@ -51,7 +51,14 @@ def initialize_database():
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 standard_number TEXT UNIQUE,
                 year TEXT,
-                source TEXT
+                source TEXT,
+                title TEXT,
+                scope TEXT,
+                revision TEXT,
+                newer_edition TEXT,
+                status TEXT,
+                amendment_info TEXT,
+                qco_info TEXT
             )
         ''')
         cursor.execute('''
@@ -70,6 +77,21 @@ def initialize_database():
         if "source" not in columns:
             cursor.execute("ALTER TABLE standards ADD COLUMN source TEXT")
 
+        metadata_columns = {
+            "title": "TEXT",
+            "scope": "TEXT",
+            "revision": "TEXT",
+            "newer_edition": "TEXT",
+            "status": "TEXT",
+            "amendment_info": "TEXT",
+            "qco_info": "TEXT",
+        }
+
+        for column_name, column_type in metadata_columns.items():
+            if column_name not in columns:
+                cursor.execute(
+                    f"ALTER TABLE standards ADD COLUMN {column_name} {column_type}"
+                )
         json_path = os.path.join(BASE_DIR, 'backend', 'data', 'detailed_requirements.json')
 
         with open(json_path, 'r', encoding='utf-8') as f:
@@ -85,6 +107,14 @@ def initialize_database():
                 product_name = details["product_name"]
                 std_num = details["standard_number"]
                 year = str(details["edition_year"])
+
+                title = details.get("title")
+                scope = details.get("scope")
+                revision = details.get("revision")
+                newer_edition = details.get("newer_edition")
+                status = details.get("status")
+                amendment_info = details.get("amendment_info")
+                qco_info = details.get("qco_info")
             except KeyError as e:
                 logger.error(f"Validation failed: Missing required field {e} for {product_code}. Skipping record.")
                 continue
@@ -119,18 +149,62 @@ def initialize_database():
 
             if not s_row:
                 cursor.execute('''
-                    INSERT INTO standards (standard_number, year, source)
-                    VALUES (?, ?, ?)
-                ''', (std_num, year, source_url))
+                    INSERT INTO standards (
+                        standard_number,
+                        year,
+                        source,
+                        title,
+                        scope,
+                        revision,
+                        newer_edition,
+                        status,
+                        amendment_info,
+                        qco_info
+                    )
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    std_num,
+                    year,
+                    source_url,
+                    title,
+                    scope,
+                    revision,
+                    newer_edition,
+                    status,
+                    amendment_info,
+                    qco_info
+                ))
                 s_id = cursor.lastrowid
                 standards_imported += 1
             else:
                 s_id = s_row[0]
                 existing_source = s_row[1]
-                # Update source if we have a verified URL and it is not already set correctly
-                if source_url and existing_source != source_url:
-                    cursor.execute('UPDATE standards SET source = ? WHERE id = ?', (source_url, s_id))
 
+                cursor.execute('''
+                    UPDATE standards
+                    SET
+                        year = ?,
+                        source = ?,
+                        title = ?,
+                        scope = ?,
+                        revision = ?,
+                        newer_edition = ?,
+                        status = ?,
+                        amendment_info = ?,
+                        qco_info = ?
+                    WHERE id = ?
+                ''', (
+                    year,
+                    source_url if source_url else existing_source,
+                    title,
+                    scope,
+                    revision,
+                    newer_edition,
+                    status,
+                    amendment_info,
+                    qco_info,
+                    s_id
+                ))
             # Map Product to Standard
             cursor.execute('''
                 INSERT OR IGNORE INTO product_standards (product_id, standard_id)

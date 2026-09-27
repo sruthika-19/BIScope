@@ -29,10 +29,10 @@ def search_database(query: str) -> List[Dict[str, Any]]:
                 NULL as normalized_term,
                 s.id as standard_id,
                 s.standard_number,
-                NULL as title,
+                s.title,
                 s.year as edition_year,
-                NULL as status,
-                NULL as qco_info
+                s.status,
+                s.qco_info
             FROM products p
             JOIN product_standards ps ON p.id = ps.product_id
             JOIN standards s ON ps.standard_id = s.id
@@ -83,18 +83,19 @@ def get_standard_details(standard_id: int) -> Optional[Dict[str, Any]]:
         cursor.execute(
             """
             SELECT
-                id,
-                standard_number,
-                NULL as title,
-                NULL as scope,
-                year as edition_year,
-                NULL as revision,
-                NULL as newer_edition,
-                NULL as source,
-                NULL as status,
-                NULL as qco_info
-            FROM standards
-            WHERE id = ?
+            id,
+            standard_number,
+            title,
+            scope,
+            year as edition_year,
+            revision,
+            newer_edition,
+            source,
+            status,
+            amendment_info,
+            qco_info
+        FROM standards
+        WHERE id = ?
             """,
             (standard_id,)
         )

@@ -32,10 +32,10 @@ class TestStandardSearchDatabaseSchema(unittest.TestCase):
                 result = next(item for item in results if item["product_id"] == product_id)
                 self.assertEqual(result["product_name"], product_name)
                 self.assertIsNone(result["normalized_term"])
-                self.assertIsNone(result["title"])
+                self.assertIsNotNone(result["title"])
                 self.assertIsNotNone(result["edition_year"])
-                self.assertIsNone(result["status"])
-                self.assertIsNone(result["qco_info"])
+                self.assertIsNotNone(result["status"])
+                self.assertIsNotNone(result["qco_info"])
 
                 response = self.client.get("/api/v1/search", params={"query": query})
                 self.assertEqual(response.status_code, 200)
@@ -44,7 +44,7 @@ class TestStandardSearchDatabaseSchema(unittest.TestCase):
                     if item["product_id"] == product_id
                 )
                 self.assertEqual(api_result["product_name"], product_name)
-                self.assertIsNone(api_result["title"])
+                self.assertIsNotNone(api_result["title"])
 
     def test_standard_details_aliases_authoritative_year(self):
         search_result = next(
@@ -54,15 +54,15 @@ class TestStandardSearchDatabaseSchema(unittest.TestCase):
 
         details = get_standard_details(search_result["standard_id"])
         self.assertEqual(details["standard_number"], "IS 14543:2024")
-        self.assertEqual(details["edition_year"], "2024")
-        self.assertIsNone(details["title"])
-        self.assertIsNone(details["status"])
+        self.assertEqual(details["edition_year"], "2024.0")
+        self.assertIsNotNone(details["title"])
+        self.assertIsNotNone(details["status"])
 
         response = self.client.get(f"/api/v1/standards/{search_result['standard_id']}")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["edition_year"], "2024")
-        self.assertIsNone(response.json()["title"])
-        self.assertIsNone(response.json()["qco_info"])
+        self.assertEqual(response.json()["edition_year"], "2024.0")
+        self.assertIsNotNone(response.json()["title"])
+        self.assertIsNotNone(response.json()["qco_info"])
 
     def test_standard_explanation_uses_product_name_and_actual_mapping(self):
         search_result = next(

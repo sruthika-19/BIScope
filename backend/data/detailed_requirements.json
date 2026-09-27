@@ -1,11 +1,11 @@
 {
   "P001": {
-    "standard_id": 1,
+    "standard_id": "STD001",
     "standard_number": "IS 14543:2024",
     "product_id": "P001",
     "product_name": "Packaged Drinking Water",
-    "title": "Packaged Drinking Water (other than Packaged Natural Mineral Water) \u2014 Specification",
-    "edition_year": 2024,
+    "title": "Packaged Drinking Water (other than Packaged Natural Mineral Water) — Specification",
+    "edition_year": "2024.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -113,15 +113,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking requirement identified"
       }
-    ]
+    ],
+    "common_user_terms": "Bottled water, drinking water",
+    "normalized_term": "Packaged Drinking Water",
+    "category": "Food and Water",
+    "intended_use": "Drinking",
+    "important_attributes": "Water source, treatment, packaging, microbiological quality, chemical quality, labelling",
+    "clarification_question": "Is this packaged drinking water or packaged natural mineral water?",
+    "scope": "Packaged drinking water other than packaged natural mineral water",
+    "exclusions": "Packaged natural mineral water",
+    "revision": "Third Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "No amendments listed in July 2024 Product Manual",
+    "qco_info": "Current certification applicability to be checked against latest BIS/QCO information",
+    "official_source": "BIS Standard Details / BIS Product Manual",
+    "date_checked": "2026-09-24",
+    "verification_notes": "BIS confirms IS 14543:2024 as Third Revision"
   },
   "P002": {
-    "standard_id": 2,
+    "standard_id": "STD002",
     "standard_number": "IS 6721:2023",
     "product_id": "P002",
-    "product_name": "Sandals and Slippers",
-    "title": "Sandal and Slippers \u2014 Specification",
-    "edition_year": 2023,
+    "product_name": "Sandals & Slippers",
+    "title": "Sandal and Slippers — Specification",
+    "edition_year": "2023.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -229,15 +245,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "LIMS identifies coefficient of friction"
       }
-    ]
+    ],
+    "common_user_terms": "Chappals, sandals, slippers, footwear",
+    "normalized_term": "Sandals and Slippers",
+    "category": "Footwear",
+    "intended_use": "Footwear use",
+    "important_attributes": "Material, construction, size, sole, performance tests",
+    "clarification_question": "Is the product a sandal or slipper covered by IS 6721?",
+    "scope": "Sandals and slippers within the standard scope",
+    "exclusions": "Products covered by other specific footwear standards",
+    "revision": "First Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Amendments identified by BIS",
+    "qco_info": "Footwear QCO applicability for relevant products",
+    "official_source": "BIS Standard Details / BIS Product Manual",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Official BIS archive lists IS 6721:2023"
   },
   "P003": {
-    "standard_id": 3,
+    "standard_id": "STD003",
     "standard_number": "IS 2925:1984",
     "product_id": "P003",
     "product_name": "Industrial Safety Helmet",
     "title": "Specification for Industrial Safety Helmets",
-    "edition_year": 1984,
+    "edition_year": "1984.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -375,15 +407,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "LIMS lists heat resistance test"
       }
-    ]
+    ],
+    "common_user_terms": "Safety helmet, hard hat, industrial helmet",
+    "normalized_term": "Industrial Safety Helmet",
+    "category": "Personal Protective Equipment",
+    "intended_use": "Head protection",
+    "important_attributes": "Helmet shell, harness, mass, shock absorption, penetration, flammability",
+    "clarification_question": "Is this an industrial safety helmet rather than another type of protective helmet?",
+    "scope": "Industrial safety helmets",
+    "exclusions": "Other helmet categories",
+    "revision": "Second Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Amendment information to be checked in latest BIS record",
+    "qco_info": "Applicable QCO/certification requirements to be checked",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "BIS LIMS identifies testing requirements for IS 2925"
   },
   "P004": {
-    "standard_id": 4,
+    "standard_id": "STD004",
     "standard_number": "IS 4246:2025",
     "product_id": "P004",
     "product_name": "LPG Gas Stove",
     "title": "Domestic Gas Stove and Built-in Hob for Use with LPG",
-    "edition_year": 2025,
+    "edition_year": "2025.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -461,15 +509,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking included in certification requirements"
       }
-    ]
+    ],
+    "common_user_terms": "Domestic gas stove, LPG stove, gas burner",
+    "normalized_term": "Domestic LPG Gas Stove",
+    "category": "Kitchen Appliance",
+    "intended_use": "Cooking",
+    "important_attributes": "LPG use, burners, materials, construction, safety, performance",
+    "clarification_question": "Is this a domestic LPG stove or a commercial/other gas appliance?",
+    "scope": "Domestic gas stoves and built-in hobs using LPG",
+    "exclusions": "Appliances outside the standard scope",
+    "revision": "Sixth Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Latest Product Manual identified by BIS",
+    "qco_info": "Applicable Domestic Gas Stoves QCO",
+    "official_source": "BIS Product Manual / BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Use 2025 edition rather than older IS 4246 records"
   },
   "P005": {
-    "standard_id": 5,
+    "standard_id": "STD005",
     "standard_number": "IS 694:2010",
     "product_id": "P005",
     "product_name": "PVC Insulated Cable",
     "title": "Polyvinyl chloride insulated unsheathed and sheathed cables/cords with rigid and flexible conductor for rated voltages up to and including 1100 V",
-    "edition_year": 2010,
+    "edition_year": "2010.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -532,15 +596,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Standard covers rated voltage up to 1100 V"
       }
-    ]
+    ],
+    "common_user_terms": "PVC cable, electrical wire, insulated cable",
+    "normalized_term": "PVC Insulated Cable",
+    "category": "Electrical Cable",
+    "intended_use": "Electrical power distribution",
+    "important_attributes": "Conductor, insulation, sheath, rated voltage, electrical performance",
+    "clarification_question": "Is the cable PVC insulated and rated up to 1100 V?",
+    "scope": "Covered PVC insulated unsheathed and sheathed cables/cords up to 1100 V",
+    "exclusions": "Cables outside rated voltage/scope",
+    "revision": "Fourth Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "BIS record contains amendment/review information",
+    "qco_info": "Cables QCO applies to specified products",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "BIS record identifies IS 694:2010 as Fourth Revision"
   },
   "P006": {
-    "standard_id": 6,
+    "standard_id": "STD006",
     "standard_number": "IS 16240:2023",
     "product_id": "P006",
     "product_name": "RO Water Treatment System",
-    "title": "Reverse Osmosis Based Point of Use Water Treatment System for Drinking Purposes \u2014 Specification",
-    "edition_year": 2023,
+    "title": "Reverse Osmosis Based Point of Use Water Treatment System for Drinking Purposes — Specification",
+    "edition_year": "2023.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -723,15 +803,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Official BIS LIMS lists this IS 16240:2023 test/requirement entry; exact limit/value not extracted here."
       }
-    ]
+    ],
+    "common_user_terms": "RO purifier, RO system, water purifier",
+    "normalized_term": "RO Based Point-of-Use Water Treatment System",
+    "category": "Water Treatment",
+    "intended_use": "Drinking water treatment",
+    "important_attributes": "RO process, water quality, contaminant reduction, electrical safety, pressure",
+    "clarification_question": "Is this a point-of-use RO system intended for drinking water?",
+    "scope": "RO-based point-of-use drinking-water treatment systems",
+    "exclusions": "Non-RO or non-point-of-use systems",
+    "revision": "First Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Amendment information to be checked",
+    "qco_info": "Water Purification System regulatory applicability",
+    "official_source": "BIS Product Manual / BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Official BIS archive lists IS 16240:2023"
   },
   "P007": {
-    "standard_id": 7,
+    "standard_id": "STD007",
     "standard_number": "IS 302 (Part 2/Sec 21):2024",
     "product_id": "P007",
     "product_name": "Storage Water Heater",
-    "title": "Household and Similar Electrical Appliances \u2014 Safety Part 2-21: Particular Requirements for Storage Water Heaters",
-    "edition_year": 2024,
+    "title": "Household and Similar Electrical Appliances — Safety Part 2-21: Particular Requirements for Storage Water Heaters",
+    "edition_year": "2024.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -745,7 +841,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Water heater specification",
         "evidence_type": "Product Document",
-        "official_source": "BIS LIMS \u2014 IS 302: Part 2: Sec 21 (2024)",
+        "official_source": "BIS LIMS — IS 302: Part 2: Sec 21 (2024)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 302: Part 2: Sec 21 (2024) for storage water heaters; exact numerical limits not extracted here."
       },
@@ -760,7 +856,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Electrical safety test",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 302: Part 2: Sec 21 (2024)",
+        "official_source": "BIS LIMS — IS 302: Part 2: Sec 21 (2024)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 302: Part 2: Sec 21 (2024) for storage water heaters; exact numerical limits not extracted here."
       },
@@ -775,7 +871,7 @@
         "comparison_type": "Limit Check",
         "required_evidence": "Performance test report",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 302: Part 2: Sec 21 (2024)",
+        "official_source": "BIS LIMS — IS 302: Part 2: Sec 21 (2024)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 302: Part 2: Sec 21 (2024) for storage water heaters; exact numerical limits not extracted here."
       },
@@ -790,19 +886,35 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Product marking and instructions",
         "evidence_type": "Label Evidence",
-        "official_source": "BIS LIMS \u2014 IS 302: Part 2: Sec 21 (2024)",
+        "official_source": "BIS LIMS — IS 302: Part 2: Sec 21 (2024)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 302: Part 2: Sec 21 (2024) for storage water heaters; exact numerical limits not extracted here."
       }
-    ]
+    ],
+    "common_user_terms": "Electric geyser, water heater, storage geyser",
+    "normalized_term": "Storage Type Electric Water Heater",
+    "category": "Electrical Appliance",
+    "intended_use": "Heating and storing domestic water",
+    "important_attributes": "Capacity, heating, electrical safety, insulation, temperature control",
+    "clarification_question": "Is this a stationary storage-type electric water heater?",
+    "scope": "Storage water heaters covered by the current safety standard",
+    "exclusions": "Other water-heating appliance types",
+    "revision": "Current revision",
+    "newer_edition": "Replaces earlier applicable storage-water-heater standard relationship",
+    "status": "Current",
+    "amendment_info": "Latest BIS lifecycle information should be used",
+    "qco_info": "Electrical Appliances for Domestic Water Heating QCO",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Do not treat IS 2082:2018 as the current standard without showing lifecycle relationship"
   },
   "P008": {
-    "standard_id": 8,
+    "standard_id": "STD008",
     "standard_number": "IS 15658:2021",
     "product_id": "P008",
     "product_name": "Paver Blocks",
-    "title": "Paving Blocks \u2014 Specification",
-    "edition_year": 2021,
+    "title": "Paving Blocks — Specification",
+    "edition_year": "2021.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -925,15 +1037,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking identified"
       }
-    ]
+    ],
+    "common_user_terms": "Concrete pavers, paving blocks, interlocking blocks",
+    "normalized_term": "Concrete Paving Blocks",
+    "category": "Building Material",
+    "intended_use": "Pavement and construction",
+    "important_attributes": "Dimensions, strength, abrasion, appearance, quality",
+    "clarification_question": "Is this a concrete paving block for pavement/construction use?",
+    "scope": "Concrete paving blocks",
+    "exclusions": "Products outside paving-block scope",
+    "revision": "Second Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Amendment information to be checked",
+    "qco_info": "Concrete-Based Building Products QCO applicability",
+    "official_source": "BIS Standard Details / BIS official sources",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Official BIS sources identify IS 15658:2021"
   },
   "P009": {
-    "standard_id": 9,
+    "standard_id": "STD009",
     "standard_number": "IS 9873 Series",
     "product_id": "P009",
     "product_name": "Toys",
-    "title": "Safety of Toys \u2014 IS 9873 Series",
-    "edition_year": null,
+    "title": "Safety of Toys — IS 9873 Series",
+    "edition_year": "Series",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -996,15 +1124,31 @@
         "verification_status": "Needs Review",
         "verification_notes": "IS 9873 is a series; exact applicable part depends on toy type. Requirement should be finalized after product-type clarification."
       }
-    ]
+    ],
+    "common_user_terms": "Children's toys, play toys, electric toys",
+    "normalized_term": "Toys",
+    "category": "Toys and Children's Products",
+    "intended_use": "Play and recreational use",
+    "important_attributes": "Toy type, age group, materials, mechanical safety, flammability, chemical migration",
+    "clarification_question": "Is this a toy, and is it electric or non-electric?",
+    "scope": "Requirements depend on the applicable IS 9873 part and toy type",
+    "exclusions": "Toy categories covered by other applicable standards",
+    "revision": "Series",
+    "newer_edition": "Multiple current/revised parts",
+    "status": "Current series",
+    "amendment_info": "Individual parts have separate revisions/amendments",
+    "qco_info": "Toys QCO, 2020",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Do not represent the entire IS 9873 series as one single edition"
   },
   "P010": {
-    "standard_id": 10,
+    "standard_id": "STD010",
     "standard_number": "IS 8737:2017",
     "product_id": "P010",
     "product_name": "LPG/CNG Valves",
-    "title": "Valve Fittings for Use with Liquefied Petroleum Gas (LPG) of up to 250 litre Water Capacity \u2014 Specification",
-    "edition_year": 2017,
+    "title": "Valve Fittings for Use with Liquefied Petroleum Gas (LPG) of up to 250 litre Water Capacity — Specification",
+    "edition_year": "2017.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1067,15 +1211,31 @@
         "verification_status": "Needs Review",
         "verification_notes": "Exact valve type/application must be confirmed before selecting the final applicable valve standard and requirements."
       }
-    ]
+    ],
+    "common_user_terms": "Gas valve, LPG valve, cylinder valve",
+    "normalized_term": "Valve for LPG/CNG Applications",
+    "category": "Gas Equipment",
+    "intended_use": "Gas storage/supply control",
+    "important_attributes": "Valve type, gas type, capacity, pressure, material, leakage",
+    "clarification_question": "Is this an LPG valve fitting or another LPG/CNG valve type?",
+    "scope": "LPG valve fittings within the specified capacity/scope",
+    "exclusions": "Valve types outside the scope or other gas applications",
+    "revision": "Second Revision",
+    "newer_edition": "Amendments exist",
+    "status": "Current",
+    "amendment_info": "Amendments include 2018, 2024 and 2025",
+    "qco_info": "Compulsory certification applies to specified products",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Exact valve type must be clarified before selecting a final standard"
   },
   "P011": {
-    "standard_id": 11,
+    "standard_id": "STD011",
     "standard_number": "IS 996",
     "product_id": "P011",
     "product_name": "Single-Phase Induction Motor",
     "title": "Single-Phase AC Induction Motors for General Purpose",
-    "edition_year": null,
+    "edition_year": "Current edition to be reconciled",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1089,7 +1249,7 @@
         "comparison_type": "Limit Check",
         "required_evidence": "Dimension report",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1104,7 +1264,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Mounting details",
         "evidence_type": "Product Document",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1119,7 +1279,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Terminal box details",
         "evidence_type": "Product Document",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1134,7 +1294,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Earthing test",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1145,11 +1305,11 @@
         "requirement_description": "Torque performance",
         "clause_reference": "Clause 12.1",
         "limit_or_condition": "As specified at rated voltage and frequency",
-        "unit": "N\u00b7m",
+        "unit": "N·m",
         "comparison_type": "Limit Check",
         "required_evidence": "Torque test report",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1160,11 +1320,11 @@
         "requirement_description": "Temperature rise",
         "clause_reference": "Clause 12.2",
         "limit_or_condition": "As specified in current applicable IS 996 edition",
-        "unit": "\u00b0C",
+        "unit": "°C",
         "comparison_type": "Maximum",
         "required_evidence": "Temperature rise test",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       },
@@ -1175,23 +1335,39 @@
         "requirement_description": "Insulation resistance",
         "clause_reference": "Clause 12.7",
         "limit_or_condition": "As specified in current applicable IS 996 edition",
-        "unit": "M\u03a9",
+        "unit": "MΩ",
         "comparison_type": "Minimum",
         "required_evidence": "Insulation resistance test",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 996:2025",
+        "official_source": "BIS LIMS — IS 996:2025",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS lists IS 996 (2025), Fourth Revision, and the cited test clauses. Exact numerical limits are not extracted here."
       }
-    ]
+    ],
+    "common_user_terms": "Single-phase AC motor, induction motor",
+    "normalized_term": "Single-Phase AC Induction Motor",
+    "category": "Electrical Motor",
+    "intended_use": "Motor-driven equipment",
+    "important_attributes": "Motor type, rating, voltage, frequency, performance, temperature",
+    "clarification_question": "Is this a single-phase AC induction motor for general-purpose use?",
+    "scope": "Single-phase AC induction motors within the applicable standard scope",
+    "exclusions": "Other motor types",
+    "revision": "Current BIS lifecycle requires verification",
+    "newer_edition": "Newer BIS information identified",
+    "status": "Current lifecycle under review",
+    "amendment_info": "IS 996:2025 is listed by current BIS search; older IS 996:2009 should not be treated as current without lifecycle verification",
+    "qco_info": "Electric Motors QCO applicability",
+    "official_source": "BIS LIMS / BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Sheet 1 should use the current BIS lifecycle rather than blindly retaining 2009"
   },
   "P012": {
-    "standard_id": 12,
+    "standard_id": "STD012",
     "standard_number": "IS 374:2019",
     "product_id": "P012",
     "product_name": "Ceiling Fan",
     "title": "Specification for Electric Ceiling Type Fans and Regulators",
-    "edition_year": 2019,
+    "edition_year": "2019.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1254,15 +1430,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking evidence required"
       }
-    ]
+    ],
+    "common_user_terms": "Electric fan, ceiling fan, fan",
+    "normalized_term": "Electric Ceiling Type Fan",
+    "category": "Electrical Appliance",
+    "intended_use": "Air circulation",
+    "important_attributes": "Blade, motor, speed, electrical performance, regulator",
+    "clarification_question": "Is this an electric ceiling-type fan covered by IS 374?",
+    "scope": "Electric ceiling-type fans and regulators",
+    "exclusions": "Other fan categories",
+    "revision": "Third Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Current BIS/QCO information includes amendments",
+    "qco_info": "Electric Ceiling Type Fans QCO, 2023",
+    "official_source": "BIS Standard Details / BIS official sources",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Applicable standard and QCO identified"
   },
   "P013": {
-    "standard_id": 13,
+    "standard_id": "STD013",
     "standard_number": "IS 2052:2023",
     "product_id": "P013",
     "product_name": "Cattle Feed",
-    "title": "Compounded Feeds for Cattle \u2014 Specification",
-    "edition_year": 2023,
+    "title": "Compounded Feeds for Cattle — Specification",
+    "edition_year": "2023.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1325,15 +1517,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Crude protein testing identified"
       }
-    ]
+    ],
+    "common_user_terms": "Compounded cattle feed, dairy cattle feed",
+    "normalized_term": "Compounded Feeds for Cattle",
+    "category": "Animal Feed",
+    "intended_use": "Feeding cattle",
+    "important_attributes": "Moisture, protein, nutrients, quality, contamination",
+    "clarification_question": "Is this compounded cattle feed covered by IS 2052?",
+    "scope": "Compounded cattle feeds",
+    "exclusions": "Other animal feeds not covered by the standard",
+    "revision": "Fifth Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "BIS standard record available",
+    "qco_info": "Mandatory certification applicability to be checked against latest notification",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Official BIS record identifies IS 2052:2023"
   },
   "P014": {
-    "standard_id": 14,
+    "standard_id": "STD014",
     "standard_number": "IS 1180 (Part 1)",
     "product_id": "P014",
     "product_name": "Distribution Transformer",
     "title": "Outdoor Oil-Immersed Distribution Transformers",
-    "edition_year": null,
+    "edition_year": "Current revision to be reconciled",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1347,7 +1555,7 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Transformer specification",
         "evidence_type": "Product Document",
-        "official_source": "BIS LIMS \u2014 IS 1180:Part 1 (2014)",
+        "official_source": "BIS LIMS — IS 1180:Part 1 (2014)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS listing reviewed for IS 1180:Part 1 (2014), Fourth Revision; exact numerical limits are not extracted here."
       },
@@ -1362,7 +1570,7 @@
         "comparison_type": "Limit Check",
         "required_evidence": "Insulation test",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 1180:Part 1 (2014)",
+        "official_source": "BIS LIMS — IS 1180:Part 1 (2014)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS listing reviewed for IS 1180:Part 1 (2014), Fourth Revision; exact numerical limits are not extracted here."
       },
@@ -1377,7 +1585,7 @@
         "comparison_type": "Limit Check",
         "required_evidence": "Electrical test report",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 1180:Part 1 (2014)",
+        "official_source": "BIS LIMS — IS 1180:Part 1 (2014)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS listing reviewed for IS 1180:Part 1 (2014), Fourth Revision; exact numerical limits are not extracted here."
       },
@@ -1392,7 +1600,7 @@
         "comparison_type": "Limit Check",
         "required_evidence": "Performance test report",
         "evidence_type": "Test Report",
-        "official_source": "BIS LIMS \u2014 IS 1180:Part 1 (2014)",
+        "official_source": "BIS LIMS — IS 1180:Part 1 (2014)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS listing reviewed for IS 1180:Part 1 (2014), Fourth Revision; exact numerical limits are not extracted here."
       },
@@ -1407,19 +1615,35 @@
         "comparison_type": "Conformance Check",
         "required_evidence": "Transformer nameplate",
         "evidence_type": "Label Evidence",
-        "official_source": "BIS LIMS \u2014 IS 1180:Part 1 (2014)",
+        "official_source": "BIS LIMS — IS 1180:Part 1 (2014)",
         "verification_status": "Verified Source Available",
         "verification_notes": "Current BIS LIMS listing reviewed for IS 1180:Part 1 (2014), Fourth Revision; exact numerical limits are not extracted here."
       }
-    ]
+    ],
+    "common_user_terms": "Electrical transformer, distribution transformer",
+    "normalized_term": "Distribution Transformer",
+    "category": "Electrical Equipment",
+    "intended_use": "Power distribution",
+    "important_attributes": "Transformer type, capacity, voltage, insulation, losses, testing",
+    "clarification_question": "Is this an outdoor oil-immersed distribution transformer covered by IS 1180?",
+    "scope": "Distribution transformers within applicable IS 1180 scope",
+    "exclusions": "Transformer types outside applicable part/revision",
+    "revision": "Current lifecycle",
+    "newer_edition": "2025 revision information identified",
+    "status": "Current applicability requires matching transformer type and latest revision",
+    "amendment_info": "Electrical Transformers QCO",
+    "qco_info": "BIS Standard Details / BIS official sources",
+    "official_source": "BIS Standard Details / BIS official sources",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Do not freeze 2014 as current without lifecycle check"
   },
   "P015": {
-    "standard_id": 15,
+    "standard_id": "STD015",
     "standard_number": "IS 1786:2008",
     "product_id": "P015",
     "product_name": "Reinforcement Steel Bars",
-    "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement \u2014 Specification",
-    "edition_year": 2008,
+    "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement — Specification",
+    "edition_year": "2008.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1557,15 +1781,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Bend testing identified"
       }
-    ]
+    ],
+    "common_user_terms": "TMT bars, rebars, steel reinforcement bars",
+    "normalized_term": "High Strength Deformed Steel Bars and Wires",
+    "category": "Steel and Construction Material",
+    "intended_use": "Concrete reinforcement",
+    "important_attributes": "Grade, nominal size, mass, chemical composition, yield stress, tensile strength",
+    "clarification_question": "Is this a high-strength deformed steel bar or wire for concrete reinforcement?",
+    "scope": "High-strength deformed steel bars and wires for concrete reinforcement",
+    "exclusions": "Plain bars and products outside scope",
+    "revision": "Fourth Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "BIS review information available",
+    "qco_info": "Steel and Steel Products QCO",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "BIS LIMS identifies chemical and mechanical requirements"
   },
   "P016": {
-    "standard_id": 16,
+    "standard_id": "STD016",
     "standard_number": "IS 269:2015",
     "product_id": "P016",
     "product_name": "Cement",
-    "title": "Ordinary Portland Cement \u2014 Specification",
-    "edition_year": 2015,
+    "title": "Ordinary Portland Cement — Specification",
+    "edition_year": "2015.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1673,15 +1913,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Compressive strength testing identified"
       }
-    ]
+    ],
+    "common_user_terms": "Portland cement, OPC, ordinary Portland cement",
+    "normalized_term": "Ordinary Portland Cement",
+    "category": "Cement and Construction Material",
+    "intended_use": "Construction",
+    "important_attributes": "Grade, fineness, setting time, strength, chemical composition",
+    "clarification_question": "Is this Ordinary Portland Cement covered by IS 269?",
+    "scope": "Ordinary Portland Cement",
+    "exclusions": "Other cement types",
+    "revision": "Latest identified edition",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "BIS standard information available",
+    "qco_info": "Cement QCO",
+    "official_source": "BIS Standard Details / BIS official sources",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Use IS 269:2015 for Ordinary Portland Cement"
   },
   "P017": {
-    "standard_id": 17,
+    "standard_id": "STD017",
     "standard_number": "IS 17018 (Part 1):2022",
     "product_id": "P017",
     "product_name": "Solar Water Pump",
-    "title": "Solar Photovoltaic Water Pumping Systems \u2014 Specification Part 1: Centrifugal Pumps",
-    "edition_year": 2022,
+    "title": "Solar Photovoltaic Water Pumping Systems — Specification Part 1: Centrifugal Pumps",
+    "edition_year": "2022.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1759,15 +2015,31 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking evidence required"
       }
-    ]
+    ],
+    "common_user_terms": "Solar pump, solar PV pump, solar water pumping system",
+    "normalized_term": "Solar Photovoltaic Water Pumping System",
+    "category": "Solar Pumping Equipment",
+    "intended_use": "Water pumping using solar energy",
+    "important_attributes": "Pump type, photovoltaic input, hydraulic performance, electrical performance",
+    "clarification_question": "Is this a centrifugal pump in a solar photovoltaic water-pumping system?",
+    "scope": "Centrifugal pumps in solar photovoltaic water-pumping systems",
+    "exclusions": "Non-centrifugal pump types outside Part 1",
+    "revision": "First identified edition",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Amendment/status to be checked in latest BIS record",
+    "qco_info": "Voluntary certification indicated in BIS standard information",
+    "official_source": "BIS Standard Details",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Scope is specifically centrifugal SPV pumping systems"
   },
   "P018": {
-    "standard_id": 18,
+    "standard_id": "STD018",
     "standard_number": "IS 13252 (Part 1):2010",
     "product_id": "P018",
     "product_name": "IT Equipment",
-    "title": "Information Technology Equipment \u2014 Safety \u2014 Part 1: General Requirements",
-    "edition_year": 2010,
+    "title": "Information Technology Equipment — Safety — Part 1: General Requirements",
+    "edition_year": "2010.0",
     "requirements_status": "To be verified",
     "requirements": [
       {
@@ -1867,7 +2139,7 @@
         "requirement_description": "Thermal requirements",
         "clause_reference": "Clause 4.5",
         "limit_or_condition": "As specified in IS 13252 Part 1:2010",
-        "unit": "\u00b0C",
+        "unit": "°C",
         "comparison_type": "Limit Check",
         "required_evidence": "Thermal test report",
         "evidence_type": "Test Report",
@@ -1950,6 +2222,22 @@
         "verification_status": "Verified Source Available",
         "verification_notes": "Marking and instruction requirement identified"
       }
-    ]
+    ],
+    "common_user_terms": "Laptop, notebook, computer, printer, tablet",
+    "normalized_term": "Information Technology Equipment",
+    "category": "IT and Electronics",
+    "intended_use": "Information processing and computing",
+    "important_attributes": "Safety, electrical hazards, thermal hazards, mechanical hazards, equipment category",
+    "clarification_question": "Is this IT equipment covered under the applicable BIS CRS category?",
+    "scope": "Information technology equipment within applicable safety/CRS scope",
+    "exclusions": "Equipment categories covered by other applicable standards",
+    "revision": "First Revision",
+    "newer_edition": "No newer edition identified",
+    "status": "Current",
+    "amendment_info": "Applicable amendments/CRS notifications must be checked",
+    "qco_info": "Compulsory Registration Scheme applies to specified IT equipment",
+    "official_source": "BIS Standard Details / BIS CRS sources",
+    "date_checked": "2026-09-24",
+    "verification_notes": "Exact applicability depends on the IT equipment category"
   }
 }

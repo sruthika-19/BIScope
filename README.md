@@ -476,8 +476,8 @@ Open a second terminal:
 
 ```powershell
 cd frontend
-npm install
-npm run dev
+npm.cmd install
+npm.cmd run dev
 ```
 
 The Vite development server will display the frontend URL in the terminal.

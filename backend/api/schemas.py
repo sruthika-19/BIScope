@@ -69,6 +69,7 @@ class StandardDetailResponse(BaseModel):
     newer_edition: Optional[str] = None
     source: Optional[str] = None
     status: Optional[str] = None
+    amendment_info: Optional[str] = None
     qco_info: Optional[str] = None
 
 class ExplanationResponse(BaseModel):
@@ -128,12 +129,12 @@ class DetailedRequirementItem(BaseModel):
 
 
 class DetailedRequirementsResponse(BaseModel):
-    standard_id: int
+    standard_id: str
     standard_number: str
     product_id: str
     product_name: str
     title: str
-    edition_year: Optional[int] = None
+    edition_year: Optional[str] = None
     requirements_status: str
     requirements: List[DetailedRequirementItem]
 

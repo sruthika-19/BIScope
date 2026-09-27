@@ -82,7 +82,7 @@ class TestDetailedRequirementsAPI(unittest.TestCase):
                     all(
                         requirement["product_id"] == product_id
                         and requirement["standard_id"]
-                        == f"STD{result['standard_id']:03d}"
+                        == result["standard_id"]
                         for requirement in result["requirements"]
                     )
                 )
