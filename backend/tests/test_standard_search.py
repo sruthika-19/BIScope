@@ -137,6 +137,14 @@ class TestStandardSearchDatabaseSchema(unittest.TestCase):
 
         self.assertEqual(api_product_ids, ["P016"])
 
+    def test_standard_details_rejects_oversized_standard_id(self):
+        oversized_id = "999999999999999999999999999999999999999999999999999999999999"
+
+        response = self.client.get(f"/api/v1/standards/{oversized_id}")
+
+        self.assertNotEqual(response.status_code, 500)
+        self.assertIn(response.status_code, (400, 404, 422))
+
 
 if __name__ == "__main__":
     unittest.main()

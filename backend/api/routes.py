@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 import uuid
-from fastapi import APIRouter, Query, HTTPException, UploadFile, File, Form
+from fastapi import APIRouter, Query, HTTPException, UploadFile, File, Form, Path as FastAPIPath
 from api.schemas import (
     TerminologyAnalyzeRequest, TerminologyAnalyzeResponse,
     ChatRequest, ChatResponse, SearchResponse,
@@ -52,7 +52,7 @@ def search_endpoint(query: str = Query(..., min_length=1)):
     }
 
 @router.get("/standards/{standard_id}", response_model=StandardDetailResponse)
-def get_standard_endpoint(standard_id: int):
+def get_standard_endpoint(standard_id: int = FastAPIPath(..., ge=1, le=9223372036854775807)):
     result = get_standard_details(standard_id)
     if not result:
         raise HTTPException(status_code=404, detail="Standard not found")
