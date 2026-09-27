@@ -1,5 +1,6 @@
 import shutil
 from pathlib import Path
+import uuid
 from fastapi import APIRouter, Query, HTTPException, UploadFile, File, Form
 from api.schemas import (
     TerminologyAnalyzeRequest, TerminologyAnalyzeResponse,
@@ -132,7 +133,8 @@ def upload_evidence_endpoint(
         raise HTTPException(status_code=400, detail="Only PDF and TXT files are supported.")
 
     # 2. Save File Temporarily using a server-controlled filename
-    safe_filename = Path(file.filename or "uploaded_file").name
+    original_filename = Path(file.filename or "uploaded_file").name
+    safe_filename = f"{uuid.uuid4().hex}_{original_filename}"
     file_path = UPLOAD_DIR / safe_filename
 
     try:
