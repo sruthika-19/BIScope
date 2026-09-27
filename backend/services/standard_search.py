@@ -19,7 +19,7 @@ def search_database(query: str) -> List[Dict[str, Any]]:
         cursor = conn.cursor()
 
         # Use LIKE for partial matching
-        search_pattern = f"%{query.strip()}%"
+        search_query = query.strip().lower()
 
         # Join products and standards, filtering out NULL product codes
         sql = """
@@ -37,13 +37,25 @@ def search_database(query: str) -> List[Dict[str, Any]]:
             JOIN product_standards ps ON p.id = ps.product_id
             JOIN standards s ON ps.standard_id = s.id
             WHERE p.product_code IS NOT NULL
-              AND (
-                  p.product_name LIKE ? OR
-                  p.product_code LIKE ?
-              )
+                AND (
+                    lower(p.product_name) = ?
+                    OR lower(p.product_name) LIKE ? || ' %'
+                    OR lower(p.product_name) LIKE '% ' || ? || ' %'
+                    OR lower(p.product_name) LIKE '% ' || ?
+                    OR lower(p.product_code) LIKE ?
+                )
         """
         
-        cursor.execute(sql, (search_pattern, search_pattern))
+        cursor.execute(
+            sql,
+            (
+                search_query,
+                search_query,
+                search_query,
+                search_query,
+                f"%{search_query}%",
+            ),
+        )
         rows = cursor.fetchall()
         
         results = [dict(row) for row in rows]

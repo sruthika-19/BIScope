@@ -115,5 +115,28 @@ class TestStandardSearchDatabaseSchema(unittest.TestCase):
         self.assertEqual(search_standards("P001", {})["status"], "DATABASE")
 
 
+    def test_cement_search_does_not_match_reinforcement(self):
+        results = search_database("cement")
+
+        product_ids = [item["product_id"] for item in results]
+
+        self.assertIn("P016", product_ids)
+        self.assertNotIn("P015", product_ids)
+
+        response = self.client.get(
+            "/api/v1/search",
+            params={"query": "cement"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        api_product_ids = [
+            item["product_id"]
+            for item in response.json()["results"]
+        ]
+
+        self.assertEqual(api_product_ids, ["P016"])
+
+
 if __name__ == "__main__":
     unittest.main()
