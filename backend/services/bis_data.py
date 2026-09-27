@@ -11,13 +11,19 @@ def search_standards(product_id: str, attributes: dict) -> Dict[str, Any]:
     Preserves all database statuses exactly as they appear.
     """
     if not DB_PATH.exists():
-        return {
-            "status": "DB_NOT_FOUND",
-            "message": f"Database file not found at {DB_PATH}",
-            "product_id": product_id,
-            "extracted_attributes": attributes,
-            "data": None
-        }
+        # Trigger auto-initialization instead of failing
+        from scripts.import_data import initialize_database
+        initialize_database()
+
+        # If it somehow still fails to create the file, return the error
+        if not DB_PATH.exists():
+            return {
+                "status": "DB_NOT_FOUND",
+                "message": f"Database file not found at {DB_PATH} even after initialization.",
+                "product_id": product_id,
+                "extracted_attributes": attributes,
+                "data": None
+            }
 
     try:
         conn = sqlite3.connect(DB_PATH)
@@ -43,7 +49,7 @@ def search_standards(product_id: str, attributes: dict) -> Dict[str, Any]:
 
         # 2. Look up mapped standards
         query = """
-            SELECT s.* 
+            SELECT s.*
             FROM standards s
             JOIN product_standards ps ON s.id = ps.standard_id
             JOIN products p ON ps.product_id = p.id

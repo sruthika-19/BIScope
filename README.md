@@ -283,6 +283,9 @@ BIScope/
 │       ├── test_real_world.py
 │       └── test_terminology.py
 │
+├── scripts/
+│   └── import_data.py
+│
 └── frontend/
     ├── package.json
     ├── package-lock.json
@@ -487,6 +490,28 @@ http://localhost:5173
 
 ---
 
+## Database Setup
+
+BIScope uses SQLite for local database-backed standard and product lookups. The generated `biscope.db` file is intentionally excluded from version control through `.gitignore`.
+
+### Automatic Initialization
+
+No manual database creation is required.
+
+When the backend requires the database and `biscope.db` does not exist, BIScope automatically initializes the database and seeds the supported product and standard records from the existing local project data.
+
+The database contains the project's 18 supported product records and their associated standard mappings.
+
+### Manual Initialization
+
+The database can also be rebuilt or re-seeded manually using the idempotent import script:
+
+```bash
+python scripts/import_data.py
+```
+
+---
+
 # Configuration
 
 The frontend uses the following backend URL by default:
@@ -524,6 +549,7 @@ The test suite covers:
 
 * AI Assistant behavior
 * API endpoints
+* Database-backed data retrieval
 * Detailed requirements
 * Evidence mapping
 * Requirement matrices
@@ -655,5 +681,5 @@ See [`LICENSE`](LICENSE) for licensing information.
 # Repository
 
 **GitHub:**
-[https://github.com/sruthika-19/BIScope
-]([url](https://github.com/sruthika-19/BIScope))
+
+https://github.com/sruthika-19/BIScope
