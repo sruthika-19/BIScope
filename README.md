@@ -1,685 +1,517 @@
+<div align="center">
+
 # BIScope
 
-### AI-Powered Intelligent Assistant for Indian Standards and BIS Services
+### AI-powered Intelligent Assistant for Indian Standards and BIS Services for Industries and Consumers
 
-BIScope is an intelligent standards-assistance platform designed to help **industries and consumers discover, understand, and review information related to Indian Standards and BIS services**.
+**Smart India Hackathon 2026 · Problem Statement SIH26107 · Team HexaDice**
 
-It bridges the gap between everyday product terminology and structured BIS information through intelligent terminology normalization, standard discovery, requirement exploration, evidence review, and a context-aware AI assistant.
+![Category](https://img.shields.io/badge/Category-Software-blue)
+![Theme](https://img.shields.io/badge/Theme-Smart%20Automation-blue)
+![Backend Tests](https://img.shields.io/badge/backend%20tests-64%2F64%20passed-brightgreen)
+![Products](https://img.shields.io/badge/supported%20products-18-informational)
+![Requirements](https://img.shields.io/badge/detailed%20requirements-117-informational)
 
-> **BIScope is an information and decision-support system. It does not replace official BIS certification, testing, inspection, regulatory processes, or legal requirements.**
+</div>
+
+---
+
+> **Important:** BIScope is an information and review aid. It does **not** certify products, determine legal compliance, guarantee BIS certification, or perform laboratory testing. Every standard it surfaces is a **candidate standard**. Final applicability and compliance must be verified against official BIS sources.
+
+---
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Problem Statement](#problem-statement)
+3. [How BIScope Works](#how-biscope-works)
+4. [Current MVP Features](#current-mvp-features)
+5. [Source of Truth vs. AI Layer](#source-of-truth-vs-ai-layer)
+6. [Architecture](#architecture)
+7. [Technology Stack](#technology-stack)
+8. [Supported Products](#supported-products)
+9. [Project Structure](#project-structure)
+10. [Getting Started](#getting-started)
+11. [API Reference](#api-reference)
+12. [Database](#database)
+13. [Testing](#testing)
+14. [Security and Robustness Fixes](#security-and-robustness-fixes)
+15. [Safety and Verification Notes](#safety-and-verification-notes)
+16. [Current Limitations](#current-limitations)
+17. [Future Enhancements](#future-enhancements)
+18. [SIH 2026 Information](#sih-2026-information)
+19. [Repository](#repository)
 
 ---
 
 ## Overview
 
-Finding the appropriate Indian Standard can be difficult when users do not know the relevant standard number, official terminology, product classification, or applicable requirements.
+BIScope helps industries and consumers understand product-related BIS information by connecting everyday product terminology to candidate Indian Standards, detailed requirements, supporting evidence, and source-grounded explanations.
 
-BIScope addresses this problem through a unified workflow:
-
-**Discover → Understand → Verify → Review → Act**
-
-A user can describe a product or requirement using natural language, after which BIScope identifies relevant supported product information, surfaces associated standards and requirements, and provides contextual explanations and evidence-review assistance.
+Instead of expecting users to already know the formal BIS terminology or the relevant standard number, BIScope offers a guided workflow from a plain-language product description to a candidate standard, its requirements, and an evidence review, with an AI assistant to explain what is already in the system.
 
 ---
 
-## Key Capabilities
+## Problem Statement
 
-### Intelligent Terminology Bridge
+Users often know their product in everyday language but may not know:
 
-Converts everyday product terminology into supported BIS-oriented terminology.
+- The formal BIS terminology
+- Which Indian Standard is relevant
+- What the standard covers
+- Which version or revision is associated with it
+- What requirements need to be reviewed
+- What evidence or documents relate to those requirements
+- Where the authoritative BIS source can be checked
 
-The terminology layer supports:
-
-* Synonyms and alternate terms
-* Text normalization
-* Common spelling variations
-* Typo recovery
-* Ambiguous terminology detection
-* Unsupported-term handling
-* Confidence-based matching
-
-The system does not generate unsupported standards when a reliable product match is unavailable.
+BIScope provides a guided workflow to address these gaps.
 
 ---
+
+## How BIScope Works
+
+The core flow is **Understand → Find → Explain → Review → Next Step**.
+
+The user journey in the interface is:
+
+```text
+Product / query → Candidate Standard → Explanation → Requirements → Evidence → AI Assistant
+```
+
+---
+
+## Current MVP Features
+
+The following capabilities are implemented in the current MVP.
+
+### BIS Terminology Bridge
+
+Converts everyday user terminology into terminology understood by the BIScope dataset. Supported behaviour:
+
+- Synonyms and alternate product terms
+- Text normalization
+- Common spelling variations
+- Typo recovery
+- Ambiguous-term detection
+- Unsupported-term handling
+- Confidence-based matching
+
+BIScope is designed **not** to invent a standard when a reliable supported match is unavailable.
 
 ### Smart Search Recovery
 
-Improves search reliability by handling common variations in user input, including:
-
-* Case differences
-* Extra whitespace
-* Common spelling mistakes
-* Everyday terminology
-* Supported synonyms
-
-This allows users to search naturally without needing to know the exact wording used in the underlying dataset.
-
----
+The search layer handles different capitalization, extra spaces, common spelling mistakes, everyday terminology, and supported synonyms. Word/phrase matching also prevents false matches such as treating *cement* as a match for *reinforcement steel bars*, while preserving valid product-code matching.
 
 ### Candidate Standard Discovery
 
-Once a supported product is identified, BIScope can surface associated standard information such as:
+After a supported product is identified, BIScope retrieves its associated candidate standard. Depending on availability, the interface can show:
 
-* Indian Standard number
-* Standard title
-* Edition/year
-* Status
-* Scope
-* Product association
+- Standard number, title, edition/year, and status
+- Scope
+- Revision information and newer-edition information
+- Amendment information
+- QCO/certification context
+- Official source link
 
-The standard information is retrieved from structured BIScope data rather than being fabricated by the AI layer.
+The wording **candidate standard** is used deliberately. BIScope does not state that a standard is definitively the applicable one.
 
----
+### Why This Standard?
 
-### Standard Context & Explanation
+Explains why a candidate standard is associated with the selected product, using structured information such as product category, product characteristics, material, intended use, terminology match, and standard scope. The explanation is based on the information available in BIScope.
 
-BIScope provides contextual explanations for why a standard is associated with a selected product.
+### Why Not Alternatives?
 
-Depending on the available data, the explanation can consider:
+Identifies alternative candidate information and explains mismatches between the selected product/context and those alternatives. This is informational guidance, not a legal or certification decision.
 
-* Product category
-* Material
-* Intended use
-* Product characteristics
-* Standard scope
-* Terminology match
+### Standard / Version Details
 
-This makes the relationship between a product and its associated standard easier to understand.
-
----
-
-### Alternative Candidate Analysis
-
-BIScope can identify mismatches between a selected product and alternative candidate information.
-
-This helps users understand which product characteristics or contextual conditions do not align with a candidate.
-
----
+Structured metadata for standards, where available: standard number, edition/year, revision, newer-edition information, current status, scope, amendment information, QCO information, official source, and verification notes. Information that could not be verified is intentionally left unverified rather than invented.
 
 ### Requirement Explorer
 
-Users can inspect detailed requirements associated with supported products and standards.
+Detailed requirements for the supported products. Each requirement can include a requirement ID, name, description, clause/reference, conditions, evidence information, verification status, notes, and source information.
 
-Requirement records can include:
+Example, **Packaged Drinking Water (IS 14543:2024)** has 7 detailed requirements:
 
-* Requirement ID
-* Requirement name
-* Description
-* Clause/reference
-* Conditions
-* Comparison information
-* Evidence information
-* Verification status
-* Notes
+1. General product requirements
+2. Microbiological requirements
+3. Chemical requirements
+4. Pesticide residue requirements
+5. Radioactive substance requirements
+6. Packaging and container requirements
+7. Marking and labelling requirements
 
-The current MVP contains **117 detailed requirement records across 18 supported product records**.
+### Requirement → Evidence Mapping
 
----
+Users can upload supported evidence documents. BIScope extracts information from the document and compares it against the available requirement information. Each requirement is classified as:
 
-### Evidence Review
+- **Matched**
+- **Partially matched**
+- **Requires review / missing information**
 
-BIScope provides an evidence-review workflow for supported uploaded documents.
+Demo example with a Packaged Drinking Water evidence document:
 
-Evidence content is analyzed against requirement-related information to identify:
+| Requirement | Result |
+|---|---|
+| REQ001 | Matched |
+| REQ006 | Matched |
+| REQ007 | Matched |
+| REQ002 – REQ005 | Partially matched |
 
-* Relevant matches
-* Missing information
-* Requirements requiring review
-* Evidence-related observations
+> **Evidence matching is not** BIS certification, legal compliance, laboratory verification, or guaranteed conformity. It is an evidence-review aid.
 
-Evidence matching is intended to assist review. It is **not a laboratory test, certification decision, or independent compliance determination**.
+### Conversational AI Assistant
 
----
+A conversational layer using the Groq API helps users understand information already available within BIScope: products, candidate standards, requirements, terminology, evidence, BIScope functionality, and standard relationships.
 
-### Context-Aware AI Assistant
+### AI Timeout Fallback
 
-BIScope includes a conversational assistant that helps users understand the information available within the platform.
+If the Groq request times out, BIScope returns a data-grounded fallback response instead of failing.
 
-The assistant can provide contextual explanations for:
+### Official BIS Source References
 
-* BIScope functionality
-* Products
-* Standards
-* Requirements
-* Evidence-related information
-* Terminology
-* Standard relationships
+Where official BIS source URLs could be verified, they are included in the structured dataset (BIS LIMS).
 
-The AI layer functions primarily as an **interaction and explanation layer**, while structured BIScope data remains the source of truth for supported records.
+`IS 14543:2024` · `IS 2925:1984` · `IS 4246:2025` · `IS 694:2010` · `IS 16240:2023` · `IS 15658:2021` · `IS 9873` · `IS 996` · `IS 374:2019` · `IS 2052:2023` · `IS 1180 Part 1` · `IS 1786:2008` · `IS 269:2015` · `IS 13252 Part 1:2010`
+
+For standards where an official source URL could not be confidently verified, the source is left unpopulated rather than guessed.
 
 ---
 
-## System Workflow
+## Source of Truth vs. AI Layer
 
-```text
-                         USER
-                           │
-                           ▼
-              Natural-Language Product / Query
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │   Terminology Bridge    │
-              │ Normalization & Recovery│
-              └────────────┬────────────┘
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │  Product Identification │
-              └────────────┬────────────┘
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │   Standard Discovery    │
-              └────────────┬────────────┘
-                           │
-                ┌──────────┴──────────┐
-                ▼                     ▼
-       Standard Explanation     Requirement Explorer
-                                      │
-                                      ▼
-                             Evidence Review
-                                      │
-                                      ▼
-                           Context-Aware Assistant
-                                      │
-                                      ▼
-                              USER UNDERSTANDING
-```
+This separation is the central design principle of BIScope.
+
+| Layer | Role |
+|---|---|
+| **Structured BIScope data** (products, standards, requirements, terminology, evidence mappings) | **Source of truth** |
+| **AI / Groq** | **Explanation and conversation layer only** |
+
+The AI layer does not replace the structured data and is not supposed to invent:
+
+- Standards
+- Requirements
+- Clauses
+- Certification results
+- Compliance verdicts
+
+AI responses are explanatory, not authoritative.
 
 ---
 
 ## Architecture
 
-BIScope follows a modular frontend-backend architecture.
+The architecture is intentionally simple:
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│                         BIScope UI                          │
-│                  React + TypeScript + Vite                  │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                              REST
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                       FastAPI Backend                       │
-├─────────────────────────────────────────────────────────────┤
-│ API Layer                                                   │
-│                                                             │
-│  Terminology │ Search │ Standards │ Requirements │ Evidence │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              ▼                ▼                ▼
-       Terminology Data   Standards Data   Requirements Data
-              │                │                │
-              └────────────────┼────────────────┘
-                               ▼
-                    Evidence & AI Services
+User
+  ↓
+React + TypeScript frontend
+  ↓
+FastAPI REST API
+  ├── Structured BIScope data (source of truth)
+  │     └── SQLite / JSON
+  └── AI / Groq explanation layer
+        └── Data-grounded response with timeout fallback
 ```
 
 ---
 
-# Technology Stack
+## Technology Stack
 
-| **Layer**       | **Technology**                 |
-| --------------- | ------------------------------ |
-| Frontend        | React, TypeScript, HTML5, CSS3 |
-| Build Tool      | Vite                           |
-| Backend         | Python, FastAPI                |
-| API Server      | Uvicorn                        |
-| Data Processing | Python                         |
-| AI Layer        | Context-aware AI service       |
-| Testing         | Python `unittest`              |
-| Version Control | Git, GitHub                    |
+| Area | Technology |
+|---|---|
+| Frontend | React, TypeScript, Vite, HTML, CSS |
+| Backend | Python, FastAPI, Uvicorn |
+| Database | SQLite, JSON / structured project data |
+| AI layer | Groq API |
+| Testing | Python `unittest`-style backend test suite (64 tests) |
+
+Major backend areas: terminology, search, standards, requirements, evidence, AI chat, and database access.
 
 ---
 
-# Project Structure
+## Supported Products
+
+The current dataset contains **18 supported product records** and **117 detailed requirement records**.
+
+| | | |
+|---|---|---|
+| Packaged Drinking Water | Sandals and Slippers | Industrial Safety Helmet |
+| LPG Gas Stove | PVC Insulated Cable | RO Water Treatment System |
+| Storage Water Heater | Paver Blocks | Toys |
+| LPG/CNG Valves | Single-Phase Induction Motor | Electric Ceiling Fan |
+| Cattle Feed | Distribution Transformer | Reinforcement Steel Bars |
+| Cement | Solar Water Pump | IT Equipment |
+
+---
+
+## Project Structure
 
 ```text
 BIScope/
-│
 ├── README.md
 ├── LICENSE
 ├── .gitignore
-│
 ├── backend/
-│   ├── .env.example
-│   ├── main.py
+│   ├── main.py                       # FastAPI app, CORS, /health, router registration
 │   ├── requirements.txt
-│   │
+│   ├── .env.example                  # Groq configuration template
 │   ├── api/
-│   │   ├── __init__.py
-│   │   ├── routes.py
-│   │   └── schemas.py
-│   │
-│   ├── data/
-│   │   ├── __init__.py
-│   │   ├── detailed_requirements.json
-│   │   ├── detailed_requirements.py
-│   │   ├── requirements_data.py
-│   │   └── terminology_data.py
-│   │
+│   │   ├── routes.py                 # REST endpoints
+│   │   └── schemas.py                # Pydantic request/response models
 │   ├── services/
-│   │   ├── __init__.py
-│   │   ├── ai_chat.py
-│   │   ├── bis_data.py
+│   │   ├── terminology.py            # Terminology Bridge
+│   │   ├── standard_search.py        # Search, standard details, explanations, alternatives
+│   │   ├── bis_data.py               # Database-backed product/standard lookup
+│   │   ├── requirements.py           # Requirement summaries
+│   │   ├── detailed_requirements.py  # Detailed requirements
+│   │   ├── document_extractor.py     # Text extraction from uploaded documents
+│   │   ├── evidence_mapping.py       # Requirement → evidence mapping
+│   │   └── ai_chat.py                # Groq conversational layer + timeout fallback
+│   ├── data/
+│   │   ├── standards_data.py
+│   │   ├── terminology_data.py
+│   │   ├── requirements_data.py
 │   │   ├── detailed_requirements.py
-│   │   ├── document_extractor.py
-│   │   ├── evidence_mapping.py
-│   │   ├── requirements.py
-│   │   ├── standard_search.py
-│   │   └── terminology.py
-│   │
-│   └── tests/
-│       ├── __init__.py
-│       ├── test_ai_chat.py
-│       ├── test_api.py
-│       ├── test_detailed_requirements.py
-│       ├── test_evidence_mapping.py
-│       ├── test_matrix.py
-│       ├── test_real_world.py
-│       └── test_terminology.py
-│
-├── scripts/
-│   └── import_data.py
-│
-└── frontend/
-    ├── package.json
-    ├── package-lock.json
-    ├── index.html
-    ├── vite.config.ts
-    │
-    ├── public/
-    │   ├── favicon.svg
-    │   ├── icons.svg
-    │   ├── logo-dark.png
-    │   └── logo-light.png
-    │
-    └── src/
-        ├── App.tsx
-        ├── App.css
-        ├── index.css
-        ├── main.tsx
-        ├── types.ts
-        │
-        ├── assets/
-        │   ├── hero.png
-        │   ├── react.svg
-        │   └── vite.svg
-        │
-        └── lib/
-            └── api.ts
+│   │   └── detailed_requirements.json
+│   └── tests/                        # Backend test suite
+├── frontend/
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── index.html
+│   └── src/
+│       ├── main.tsx
+│       ├── App.tsx
+│       ├── types.ts
+│       └── lib/api.ts                # API client
+└── scripts/
+    └── import_data.py                # SQLite schema creation and data import
 ```
 
 ---
 
-# API Reference
+## Getting Started
 
-BIScope exposes REST APIs through FastAPI.
+### Prerequisites
 
-### Terminology
+- Python 3
+- Node.js and npm
+- A Groq API key, needed only for the conversational AI layer
 
-```http
-POST /api/v1/terminology/analyze
-```
+### 1. Clone the repository
 
-Analyzes and normalizes user terminology.
-
-### Conversational Assistant
-
-```http
-POST /api/v1/chat
-```
-
-Processes context-aware conversational requests.
-
-### Search
-
-```http
-GET /api/v1/search
-```
-
-Searches supported product and standard information.
-
-### Standard Information
-
-```http
-GET /api/v1/standards/{standard_id}
-```
-
-Retrieves information associated with a standard.
-
-```http
-GET /api/v1/standards/{standard_id}/explanation
-```
-
-Provides contextual standard explanation.
-
-```http
-GET /api/v1/standards/{standard_id}/alternatives
-```
-
-Provides available alternative candidate information.
-
-### Requirements
-
-```http
-GET /api/v1/requirements
-```
-
-Returns supported requirement information.
-
-```http
-GET /api/v1/requirements/{product_id}
-```
-
-Returns requirements associated with a product.
-
-```http
-GET /api/v1/requirements/{product_id}/detailed
-```
-
-Returns detailed requirement information.
-
-### Evidence
-
-```http
-POST /api/v1/evidence/analyze
-```
-
-Analyzes uploaded evidence against available requirement information.
-
-```http
-POST /api/v1/evidence/upload
-```
-
-Handles supported evidence uploads.
-
----
-
-# Application Views
-
-BIScope currently provides the following primary workflows:
-
-### Home
-
-Entry point for product discovery and BIS-related queries.
-
-### Explore
-
-Displays product and associated standard information.
-
-### Check Requirements
-
-Provides detailed requirement information for supported products.
-
-### Review Evidence
-
-Allows users to review uploaded evidence against relevant requirements.
-
-### Services
-
-Provides access to available BIScope assistance workflows.
-
----
-
-# Local Development
-
-## Prerequisites
-
-Install the following:
-
-* Python 3.x
-* Node.js
-* npm
-* Git
-
----
-
-## Clone the Repository
-
-```powershell
+```bash
 git clone https://github.com/sruthika-19/BIScope.git
 cd BIScope
 ```
 
----
+### 2. Backend setup
 
-## Start the Backend
-
-```powershell
+```bash
 cd backend
-python -m pip install -r requirements.txt
-python -m uvicorn main:app --reload
+
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+cp .env.example .env            # Windows: copy .env.example .env
 ```
 
-Backend:
+Edit `backend/.env` and set your Groq API key:
 
-```text
-http://localhost:8000
+```env
+GROQ_API_KEY="your_groq_api_key_here"
 ```
 
-Interactive API documentation:
+`.env.example` also contains a `GROQ_MODEL` variable that selects the Groq model. Do not commit `.env`; it is listed in `.gitignore`.
 
-```text
-http://localhost:8000/docs
+Start the API server:
+
+```bash
+uvicorn main:app --reload --port 8000
 ```
 
----
+The API is now available at `http://localhost:8000`, with interactive FastAPI docs at `http://localhost:8000/docs`.
 
-## Start the Frontend
+The SQLite database does not need to be created manually. If it is missing, the backend initializes it from the project's structured data (see [Database](#database)).
 
-Open a second terminal:
+### 3. Frontend setup
 
-```powershell
+In a second terminal:
+
+```bash
 cd frontend
 npm.cmd install
 npm.cmd run dev
 ```
 
-The Vite development server will display the frontend URL in the terminal.
+The frontend runs at `http://localhost:5173`. It calls the backend at `http://localhost:8000` by default; set `VITE_API_BASE` to point it elsewhere.
 
-Typically:
+> The backend currently allows CORS only for `http://localhost:5173`, so run the frontend on that origin for the local setup.
 
-```text
-http://localhost:5173
-```
-
----
-
-## Database Setup
-
-BIScope uses SQLite for local database-backed standard and product lookups. The generated `biscope.db` file is intentionally excluded from version control through `.gitignore`.
-
-### Automatic Initialization
-
-No manual database creation is required.
-
-When the backend requires the database and `biscope.db` does not exist, BIScope automatically initializes the database and seeds the supported product and standard records from the existing local project data.
-
-The database contains the project's 18 supported product records and their associated standard mappings.
-
-### Manual Initialization
-
-The database can also be rebuilt or re-seeded manually using the idempotent import script:
+Other frontend scripts:
 
 ```bash
-python scripts/import_data.py
+npm.cmd run build     # Type-check and production build
+npm.cmd run lint      # Lint with oxlint
+npm.cmd run preview   # Preview the production build
 ```
 
 ---
 
-# Configuration
+## API Reference
 
-The frontend uses the following backend URL by default:
+All endpoints below are registered under the `/api/v1` prefix, except `/health`.
 
-```text
-http://localhost:8000
-```
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Service health check |
+| `POST` | `/api/v1/terminology/analyze` | Analyze a user query through the Terminology Bridge |
+| `GET` | `/api/v1/search?query=...` | Search supported products/standards |
+| `GET` | `/api/v1/standards/{standard_id}` | Standard / version details |
+| `GET` | `/api/v1/standards/{standard_id}/explanation?product_id=...` | "Why this standard?" explanation |
+| `GET` | `/api/v1/standards/{standard_id}/alternatives?product_id=...` | "Why not alternatives?" explanation |
+| `GET` | `/api/v1/requirements` | Requirement summaries for all supported products |
+| `GET` | `/api/v1/requirements/{product_id}` | Requirement summary for one product |
+| `GET` | `/api/v1/requirements/{product_id}/detailed` | Detailed requirements for one product |
+| `POST` | `/api/v1/evidence/analyze` | Map submitted document text to requirements (`product_id` and `document_text` parameters) |
+| `POST` | `/api/v1/evidence/upload` | Upload a PDF or TXT evidence document (multipart form: `product_id`, `file`) and map it to requirements |
+| `POST` | `/api/v1/chat` | Conversational AI assistant (`message`, `conversation_history`) |
 
-To configure a different API origin, create:
+Notes:
 
-```text
-frontend/.env
-```
-
-and add:
-
-```env
-VITE_API_BASE=http://your-backend-url
-```
-
-Restart the frontend development server after changing the environment configuration.
+- `product_id` is a product code such as `P001`.
+- `standard_id` is validated to be a positive integer within a safe range before any database access.
+- Evidence upload accepts `.pdf` and `.txt` files only. Documents without readable text (for example, scanned image-only files) are rejected; OCR is not currently supported.
 
 ---
 
-# Testing
+## Database
 
-Run the backend test suite from the project root:
+BIScope uses SQLite with automatic initialization.
 
-```powershell
+- The database file is created at `backend/database/biscope.db`.
+- `.db` files are git-ignored, so the database is not stored in the repository.
+- When the database is missing, the backend initializes it from the project's structured data using `scripts/import_data.py`.
+- The importer creates and populates three tables: **products**, **standards**, and **product-standard mappings**.
+- Database field mapping was corrected so the importer uses `product_name`, `standard_number`, and `edition_year` rather than deriving incorrect values from product codes.
+
+---
+
+## Testing
+
+The backend test suite has **64 tests, and all 64 pass**.
+
+```bash
 cd backend
-python -m unittest discover tests
+python -m unittest discover -s tests -t .
 ```
 
-The test suite covers:
-
-* AI Assistant behavior
-* API endpoints
-* Database-backed data retrieval
-* Detailed requirements
-* Evidence mapping
-* Requirement matrices
-* Real-world scenarios
-* Terminology matching
-
-A successful run should conclude with:
+Expected result:
 
 ```text
+Ran 64 tests
 OK
 ```
 
----
+Coverage areas:
 
-# Data Integrity & Safety
-
-BIScope follows a **source-grounded approach** to standards assistance.
-
-### Structured data as the source of truth
-
-Supported product, standard, and requirement information is retrieved from the application's structured dataset.
-
-### No unsupported standard generation
-
-BIScope is designed not to fabricate standard numbers, titles, requirements, or applicability information when a reliable supported match is unavailable.
-
-### Verification status ≠ compliance
-
-A record marked:
-
-```text
-Verified Source Available
-```
-
-indicates that a relevant source has been identified within the current dataset.
-
-It does **not** indicate that a product has passed testing or received BIS certification.
-
-### Evidence match ≠ certification
-
-Evidence matching identifies relevant content for review. It does not independently establish technical compliance.
-
-### Official BIS processes remain authoritative
-
-Official BIS publications, applicable regulations, testing laboratories, certification procedures, and current authoritative documentation remain necessary for formal compliance and certification decisions.
+- API behavior
+- AI chat behavior
+- Database-backed lookup
+- Requirements and detailed requirements
+- Evidence mapping
+- Terminology
+- Search
+- Real-world scenarios
+- Security and upload handling
+- Standard ID validation
+- Regression cases
 
 ---
 
-# Current MVP Scope
+## Security and Robustness Fixes
 
-The current implementation includes:
-
-* **18 supported product records**
-* **117 detailed requirement records**
-* Terminology normalization
-* Search recovery
-* Candidate standard discovery
-* Standard explanation
-* Alternative candidate analysis
-* Requirement exploration
-* Evidence review
-* Requirement-to-evidence mapping
-* Context-aware AI assistance
-* Responsive web interface
-* Automated backend testing
+| Issue | Fix |
+|---|---|
+| **Upload path traversal**: an uploaded filename could contain path components | Only the filename itself is used; path components are stripped |
+| **Duplicate upload filenames**: two uploads with the same name could overwrite each other | A unique server-side filename is generated; the original filename is preserved in the response |
+| **Oversized `standard_id`**: an extremely large value could cause an SQLite/Python integer overflow and an HTTP 500 | The API validates the standard ID range before database access |
+| **CORS**: wildcard configuration | Restricted to `http://localhost:5173` for the current local frontend setup |
 
 ---
 
-# Limitations
+## Safety and Verification Notes
 
-BIScope is currently an **MVP/prototype**.
+BIScope is built to avoid overstating what it knows:
 
-The current implementation does not represent the complete BIS ecosystem.
+- Standards are presented as **candidate standards**, never as a definitive applicability decision.
+- Structured BIScope data is the source of truth; AI output is explanatory only.
+- Information that could not be verified is left unverified rather than guessed, including official source URLs.
+- Evidence matching is a review aid. It is not certification, legal compliance, laboratory verification, or a guarantee of conformity.
+- BIScope does not claim complete BIS coverage, live BIS synchronization, or automatic verification of every current BIS regulation.
 
-Limitations include:
-
-* Limited structured product and standard coverage.
-* Not every BIS standard is currently represented.
-* Some information may require verification against current official BIS sources.
-* Evidence analysis is limited to the information available in uploaded documents and the implemented matching logic.
-* AI-generated explanations should not be treated as authoritative legal or regulatory interpretations.
-* Formal certification and compliance decisions remain outside the scope of the application.
-* Live synchronization with every BIS source is not assumed unless explicitly implemented and verified.
+BIScope helps users discover and review candidate standards, requirements, and supporting evidence using structured, source-grounded information. **Final applicability and compliance must be verified against official BIS sources.**
 
 ---
 
-# Future Enhancements
+## Current Limitations
 
-Potential future development includes:
-
-* Expanded BIS product and standard coverage.
-* Enhanced official-source synchronization.
-* Improved multilingual assistance.
-* Expanded terminology and synonym coverage.
-* Advanced document extraction.
-* Clause-level evidence mapping.
-* Improved amendment and standard-version tracking.
-* Enhanced consumer-oriented BIS services.
-* More comprehensive source traceability.
-* Additional BIS service workflows.
-* Improved accessibility and voice interaction.
+- The dataset is limited to 18 supported products and does not represent the entire BIS ecosystem.
+- Some source metadata still requires verification.
+- Evidence analysis is limited to the available document content and the implemented matching logic.
+- AI responses are explanatory rather than authoritative.
+- Formal certification and compliance decisions remain outside BIScope.
+- Complete live synchronization with BIS sources is not currently claimed.
 
 ---
 
-# Smart India Hackathon 2026
+## Future Enhancements
 
-BIScope was developed in response to the Smart India Hackathon 2026 problem statement:
+The following are **planned and not yet implemented**:
 
-> **AI-powered Intelligent Assistant for Indian Standards and BIS Services for Industries and Consumers**
-
-The project focuses on reducing the complexity of discovering and understanding standards-related information while maintaining a clear distinction between **AI-assisted information discovery** and **official BIS certification or compliance decisions**.
-
----
-
-# Project Status
-
-**MVP / Prototype**
-
-The current system provides an integrated frontend and FastAPI backend with structured BIS-oriented data, requirements, evidence review, and conversational assistance.
-
----
-
-# License
-
-See [`LICENSE`](LICENSE) for licensing information.
+- Expanded BIS product and standard coverage
+- Verified synchronization / update monitoring with official BIS sources, where feasible
+- Improved multilingual assistance
+- Expanded terminology coverage
+- Advanced document extraction
+- Clause-level evidence mapping
+- Better amendment and version tracking
+- Expanded BIS service workflows
+- More detailed source traceability
+- Voice and accessibility improvements
 
 ---
 
-# Repository
+## SIH 2026 Information
 
-**GitHub:**
+| | |
+|---|---|
+| **Hackathon** | Smart India Hackathon 2026 |
+| **Problem Statement ID** | SIH26107 |
+| **Problem Statement** | AI-powered Intelligent Assistant for Indian Standards and BIS Services for Industries and Consumers |
+| **Theme** | Smart Automation |
+| **Category** | Software |
+| **Team Name** | HexaDice |
+| **Team ID** | 151458 |
 
-https://github.com/sruthika-19/BIScope
+---
+
+## Repository
+
+**GitHub:** [https://github.com/sruthika-19/BIScope](https://github.com/sruthika-19/BIScope)
+
+---
+
+<div align="center">
+
+**BIScope** · Team HexaDice · Smart India Hackathon 2026
+
+*Candidate standards, source-grounded explanations, and evidence review, with final verification against official BIS sources.*
+
+</div>
