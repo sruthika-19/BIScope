@@ -333,7 +333,7 @@ GROQ_API_KEY="your_groq_api_key_here"
 Start the API server:
 
 ```bash
-uvicorn main:app --reload --port 8000
+python -m uvicorn main:app --reload --port 8000
 ```
 
 The API is now available at `http://localhost:8000`, with interactive FastAPI docs at `http://localhost:8000/docs`.
